@@ -1,13 +1,18 @@
+import re
 from typing import Any, Optional
-from smolagents.tools import Tool
-import requests
+
 import markdownify
+import requests
 import smolagents
+from smolagents.tools import Tool
+
 
 class VisitWebpageTool(Tool):
     name = "visit_webpage"
     description = "Visits a webpage at the given url and reads its content as a markdown string. Use this to browse webpages."
-    inputs = {'url': {'type': 'string', 'description': 'The url of the webpage to visit.'}}
+    inputs = {
+        "url": {"type": "string", "description": "The url of the webpage to visit."}
+    }
     output_type = "string"
 
     def forward(self, url: str) -> str:
@@ -15,7 +20,6 @@ class VisitWebpageTool(Tool):
             import requests
             from markdownify import markdownify
             from requests.exceptions import RequestException
-
             from smolagents.utils import truncate_content
         except ImportError as e:
             raise ImportError(
