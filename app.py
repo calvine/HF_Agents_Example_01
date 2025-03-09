@@ -8,6 +8,7 @@ from smolagents import (
     DuckDuckGoSearchTool,
     HfApiModel,
     TransformersModel,
+    LiteLLMModel,
     load_tool,
     tool,
 )
@@ -68,7 +69,14 @@ duck_duck_go_search = DuckDuckGoSearchTool()
 
 model_name = "Qwen/Qwen2.5-Coder-32B-Instruct"
 
-model = TransformersModel(model_id=model_name, max_new_tokens=4096, device_map="auto")
+# model = TransformersModel(model_id=model_name, max_new_tokens=4096, device_map="auto")
+
+model = LiteLLMModel(
+    model_id="ollama_chat/qwen2.5-coder:32b",
+    # api_base="http://localhost:3000",
+    # api_key="sk-f92261f18fe34d088c5e045178792e21",
+    num_ctx=8192
+)
 
 # model = AutoModelForCausalLM.from_pretrained(
 #     model_name, torch_dtype="auto", device_map="auto"

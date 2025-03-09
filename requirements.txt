@@ -1,5 +1,6 @@
 markdownify
 smolagents
+smolagents[litellm]
 requests
 duckduckgo_search
 pandas
